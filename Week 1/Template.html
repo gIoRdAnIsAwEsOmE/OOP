@@ -2,20 +2,52 @@
     
     <head></head>
     <body>
-        <form>
-            Item: <input type="text" id=Item/><br>
-            Specialty: <input type="text" id="ItemSpecialty"/><br><br>
-            Store: <input type="text" id="Store"/><br>
-            Place: <input type="text" id="StorePlace"/><br>
-            Specialty: <input type="text" id="StoreSpecialty"/><br>
+            Item: <input type="text" id=Item></input><br>
+            Item Specialty: <input type="text" id="ItemSpecialty"></input><br><br>
+            Store: <input type="text" id="Store"></input><br>
+            Place: <input type="text" id="StorePlace"></input><br>
+            Store Specialty: <input type="text" id="StoreSpecialty"></input><br>
             Audience: <input type="text" id="StoreAudience"/><br>
             <button onclick="submit();">Submit</button>
-        </form>
     </body>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="Classes.js"></script>
         
     <script>
+        var item = $("#Item");
+        const itemspecialty = $("#ItemSpecialty");
+        const store = $("#Store");
+        const storeplace = $("#StorePlace");
+        const storespecialty = $("#StoreSpecialty");
+        const storeaudience = $("#StoreAudience");
         
+        function submit(){
+            $.ajax({
+                url: 'https://data.sparkfun.com/input/4JqbYNR1Y9fjoJ90EGb2',
+                headers: {
+                    'Phant-Private-Key': 'b54VGPE1GNiNAkjDeYWz'
+                },
+                method: 'POST',
+                datatype: 'json',
+                async: false,
+                data: {    
+                    itemname: item.val(),
+                    itemspecialty: itemspecialty.val(),
+                    storeaudience: storeaudience.val(),
+                    storeitems: null,
+                    storename: store.val(),
+                    storeplace: storeplace.val(),
+                    storespecialty: storespecialty.val()
+                },
+                success: function(data){
+                    console.log("Success: " + data);
+                }
+            });
+            console.log("work?");
+        }
+        
+        function(args) {
+            //code
+        }
     </script>
 </html>
