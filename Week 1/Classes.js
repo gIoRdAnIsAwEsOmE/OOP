@@ -15,7 +15,7 @@ class Store {
                      Items: ${this.items}!
                      `);
     }
-    addItem(item){ // Another class.
+    set addItem(item){ // Another class.
         this.items.push(item);
         console.log(`Pushed an item!`);
     }
