@@ -1,18 +1,43 @@
 <html>
 	<body>
 		
+		Submit <br>
+		Book: <input type="text" id="book"/> <br>
+		Author: <input type="text" id="bookauthor"/> <br>
+		Price: <input type="text" id="bookprice"/> <br>
+		<button id="book();">Submit Book</button> <br>
+		Submit <br>
+		Library <input type="text" id="library"/> <br>
+		Place <input type="text" id="libraryplace"/> <br>
+		Books <input type="text" id="librarybooks"/> <br>
+		<button id="library();">Submit Library</button> <br>
+		
+		
 	</body>
+	
 	<script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
 	<script>
-		
-		class Store {
-
+		CB.CloudApp.init('njoumzczehoq', 'b883f979-5a5f-4d5f-8283-d9f4f657d91d');
+		class Library {
+			constructor(name, place){
+				this._name = name;
+				this._place = place;
+				this._books = null;
+			}
 		}
 
-		class Item {
-
+		class Books {
+			constructor(name, author, price, company, time){
+				this._name = name;
+				this._author = author;
+				this._price = price;
+			}
 		}
-
+		CB.CloudApp.init('njoumzczehoq', 'b883f979-5a5f-4d5f-8283-d9f4f657d91d');
+		var library 
 		
+
+
+
 	</script>>
 </html>
