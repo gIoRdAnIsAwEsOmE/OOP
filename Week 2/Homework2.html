@@ -15,7 +15,10 @@
 		<button onclick="submitLibrary();">Submit Library</button>
 		<br>
 		<button onclick="output();">UpdateList</button>
-		<span id="output"></span>
+		<br>
+		<span id="libraryoutput">LIBRARY <br></span>
+		<br>
+		<span id="bookoutput">BOOK<br><br></span>
 		
 	</body>
 	
@@ -41,20 +44,24 @@
 		}
 	}
 	class Book {
-		constructor(name, author, price) {
+		constructor(name, author, price, bool) {
 			let thelibrary = thebooks;
 			this._name = name;
 			this._author = author;
 			this._price = price;
 			console.log(`${name} ${author} ${price}`);
-			thelibrary.set("book", this.name);
-			thelibrary.set("bookauthor", this.author);
-			thelibrary.set("bookprice", this.price);
-			thelibrary.save({
-				success: (res) => {
-					console.log(res);
-				}
-			});
+			if(bool){
+				thelibrary.set("book", this.name);
+				thelibrary.set("bookauthor", this.author);
+				thelibrary.set("bookprice", this.price);
+				thelibrary.save({
+					success: (res) => {
+						console.log(res);
+					}
+				});
+			}else {
+				console.log("Did nothing");
+			}
 		}
 		get name (){
 			return this._name;
@@ -83,8 +90,38 @@
 	}
 	
 	function output(){
-		console.log(thelibrary.get("book"));
-		
+		let booksquery = new CB.CloudQuery("Book");
+		let libraryquery = new CB.CloudQuery("Library");
+		queries(booksquery);
+		queries(libraryquery);
+		let output = $("#bookoutput");
+		output.html("");
+		output = $("#libraryoutput");
+		output.html("");
+	}
+	function queries(query){
+		query.find({
+			success: (results) => {
+				for(let r in results){
+					const result = results[r];
+					const tablename = result.document._tableName;
+					const tt = tablename.toLowerCase();
+					let output = $("#" + tt + "output");
+					var list;
+					const d = result.document;
+					if(tt == "library"){
+						list = [tt, tt + "place"];
+						output.html(output.html() + r  + "<br>" + d.library);
+						output.html(output.html() + "<br>" + d.libraryplace + "<br>");
+					}else if(tt == "book"){
+						list = [tt, tt + "author", tt + "price"];
+						output.html(output.html() + r  + "<br>" + d.book);
+						output.html(output.html() + "<br>" + d.bookauthor);
+						output.html(output.html() + "<br>" + d.bookprice + "<br>");
+					}
+				}
+			}
+		});
 	}
 	</script>
 </html>
