@@ -1,0 +1,49 @@
+<html>
+	<body>
+	Candy <input id="newcandy"></input>
+	<button onclick="submit();">Submit</button>
+	<br>
+	Find the amount of candy in each store: <select id="dropdown" onchange="find();"></select>
+	<span id="output"></span>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+	<script src="Store.js"></script>
+	<script src="Candy.js"></script>
+	<script src="StoreCandy.js"></script>
+	<script>
+		let storequery = new CB.CloudQuery("Store");
+	    function setUpDropdown(){ // proves the dropdown list
+			let dropdown = $("#dropdown");
+			storequery.find({
+				success : (res) => {
+					console.log(res);
+					for(let r of res){
+						r = r.document;
+						dropdown.html(dropdown.html() + "<option value>" + r.name + "</option>");
+					}
+				} 
+			});
+	    }
+		
+		function find(){
+			let selected = $('#dropdown :selected').text();
+			storequery.equalTo('name', selected);
+			storequery.find({
+				success : (res) => {
+					for(let r of res){
+						let store_id = r.document.store_id;
+						let mnm = new Candy("MNM", "2", "50", "30", false);
+						let finder = new StoreCandy();
+						finder.getBounds(mnm);
+						
+						
+						
+					}
+					
+				}	
+			});
+		}
+	    setUpDropdown();
+	</script>
+</html>

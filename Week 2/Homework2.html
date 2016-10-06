@@ -104,7 +104,8 @@
 			success: (results) => {
 				for(let r in results){
 					const result = results[r];
-					const tablename = result.document._tableName;
+					console.log(result);
+					/*const tablename = result.document._tableName;
 					const tt = tablename.toLowerCase();
 					let output = $("#" + tt + "output");
 					var list;
@@ -118,7 +119,7 @@
 						output.html(output.html() + "---------------------------------------"  + "<br>" + d.book);
 						output.html(output.html() + "<br>" + d.bookauthor);
 						output.html(output.html() + "<br>" + d.bookprice + "<br>");
-					}
+					}*/
 				}
 			}
 		});
