@@ -1,4 +1,5 @@
 <html>
+<<<<<<< HEAD
 	<head>
 		<style>
 			table, th, td {
@@ -16,6 +17,11 @@
 			<td>Candy</td><td>Cost</td><td>Expiration</td><td>ID</td>
 		</tr>
 	</table>
+=======
+	<body>
+	Find the amount of candy in each store: <select id="dropdown" onchange="find();"></select>
+	<span id="output"></span>
+>>>>>>> 2b78be659ea032cc0f588caea881e59d90908a3e
 	</body>
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
@@ -24,11 +30,18 @@
 	<script src="StoreCandy.js"></script>
 	<script>
 		let storequery = new CB.CloudQuery("Store");
+<<<<<<< HEAD
 		let candyquery = new CB.CloudQuery("Candy");
+=======
+>>>>>>> 2b78be659ea032cc0f588caea881e59d90908a3e
 	    function setUpDropdown(){ // proves the dropdown list
 			let dropdown = $("#dropdown");
 			storequery.find({
 				success : (res) => {
+<<<<<<< HEAD
+=======
+					console.log(res);
+>>>>>>> 2b78be659ea032cc0f588caea881e59d90908a3e
 					for(let r of res){
 						r = r.document;
 						dropdown.html(dropdown.html() + "<option value>" + r.name + "</option>");
@@ -44,8 +57,16 @@
 				success : (res) => {
 					for(let r of res){
 						let store_id = r.document.store_id;
+<<<<<<< HEAD
 						let finder = new StoreCandy(store_id);
 						finder.getBounds("Store", "#output");
+=======
+						let mnm = new Candy("MNM", "2", "50", "30", false);
+						let finder = new StoreCandy();
+						finder.getBounds(mnm);
+						
+						
+>>>>>>> 2b78be659ea032cc0f588caea881e59d90908a3e
 						
 					}
 					

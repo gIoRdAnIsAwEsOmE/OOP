@@ -1,4 +1,5 @@
 class StoreCandy {
+<<<<<<< HEAD
     constructor(finderid, candyid, storeid) {
         this._finderid = finderid;
         this._candyid = candyid;
@@ -29,6 +30,24 @@ class StoreCandy {
                 }
             });
         };
+=======
+    constructor() {
+        this.store_ids = [];
+		this.getBounds = (classobject) => {
+			let scquery = new CB.CloudQuery("StoreCandy");
+			if(classobject.constructor.name == "Store"){
+				console.log("Store");
+				scquery.equalsTo(classobject.id);
+				scquery.find({
+					success : (res) => {
+						console.log(res);
+					}	
+				});
+			}else if (classobject.constructor.name == "Candy"){
+				console.log("Currently we cannot find where this candy came from, we are sorry :(");
+			}
+		};
+>>>>>>> 2b78be659ea032cc0f588caea881e59d90908a3e
 		this.setBounds = (storeid, candyid) => {
 			this.cloudobject.set("store_id", storeid);
 			this.cloudobject.set("candy_id", candyid);
@@ -39,4 +58,8 @@ class StoreCandy {
         let sc = new CB.CloudObject("StoreCandy");
         return sc;
 		}
+<<<<<<< HEAD
 	}
+=======
+	} 
+>>>>>>> 2b78be659ea032cc0f588caea881e59d90908a3e
